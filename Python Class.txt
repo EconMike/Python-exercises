@@ -1,0 +1,217 @@
+#Basic syntax
+1+1
+
+df= 1+1
+df
+
+print("Hello everyone")
+
+c=3
+a=2
+c -= a 
+
+x = 5
+
+print(type(x))
+
+s = 'xyz’'
+
+print(type(s))
+
+type([]) 
+
+type({}) 
+
+type('') 
+
+type(0) 
+
+
+import pandas as pd
+df=pd.DataFrame({'names':['5','8','9','10'],'grades':[76,95,77,78,]})
+
+#Loading data
+
+#check data type
+type(df)
+
+
+
+#using pandas import text file
+import pandas as pd
+
+data=pd.read_csv('iris_data.txt', sep=",", header=None,names=('A', 'B', 'C','D','E'))
+
+data.head()
+
+#loading data in python (jupyter notebook)
+
+import pandas as pd
+df =pd.read_csv('PRAC_DATA.csv')
+
+
+
+# excel files using python
+
+import pandas as pd
+xl = pd.ExcelFile('PRAC_DATA2.xls')
+xl.sheet_names
+df = xl.parse("Sheet1")
+df.head()
+
+
+
+
+
+#Exporting data from python 
+
+#Excel
+import pandas as pd
+import openpyxl
+
+
+df = pd.DataFrame([[11, 21, 31], [12, 22, 32], [31, 32, 33]],
+                  index=['one', 'two', 'three'], columns=['a', 'b', 'c'])
+
+print(df)
+
+df.to_excel('G:\\DIRECTORY\\pandas_to_excel.xlsx', sheet_name='new_sheet_name')
+
+#write to multiple worksheets
+df2 = df[['a', 'c']]
+
+with pd.ExcelWriter('G:\\DIRECTORY\\pandas_to_excel.xlsx') as writer:
+    df.to_excel(writer, sheet_name='sheet1')
+    df2.to_excel(writer, sheet_name='sheet2')
+
+
+#write to preexsiting sheet
+#Note: Because it is processed using openpyxl, only .xlsx files are included.
+path = 'pandas_to_excel.xlsx'
+
+with pd.ExcelWriter(path) as writer:
+    writer.book = openpyxl.load_workbook(path)
+    df.to_excel(writer, sheet_name='new_sheet1')
+    df2.to_excel(writer, sheet_name='new_sheet2')
+
+
+#into text file
+data.to_csv('F:\\data.txt' , sep=' ')
+
+df.to_csv('F:\data.csv' , sep=',') 
+
+
+
+
+#Loops
+
+
+fruits = ["apple", "banana", "cherry"]
+for x in fruits:
+  print(x)
+
+fruits = ["apple", "banana", "cherry"]
+for x in fruits:
+  print(x)
+  if x == "banana":
+    break
+
+fruits = ["apple", "banana", "cherry"]
+for x in fruits:
+  if x == "banana":
+    continue
+  print(x)
+
+
+adj = ["red", "big", "tasty"]
+fruits = ["apple", "banana", "cherry"]
+
+for x in adj:
+  for y in fruits:
+    print(x, y)
+
+#list of list
+ev_data = [['vehicle', 'range', 'price'],
+           ['Tesla Model 3 LR', '310', '49900'],
+           ['Hyundai Ioniq EV', '124', '30315'],
+           ['Chevy Bolt', '238', '36620']]
+
+for row in ev_data[1:]:         # loop through each row in ev_data starting with row 2 (index 1)
+    ev_range = row[1]           # each car's range is found in column 2 (index 1)
+    ev_range = int(ev_range)    # convert each range number from a string to an integer
+    row[1] = ev_range           # assign range, which is now an integer, back to index 1 in each row
+
+print(ev_data)
+print(ev_range)
+
+total_range = 0                     # create a variable to store the total range number
+
+for row in ev_data[1:]:             # loop through each row in ev_data starting with row 2 (index 1)
+    ev_range = row[1]               # each car's range is found in column 2 (index 1)
+    total_range += ev_range         # add this number to the number stored in total_range
+
+number_of_cars = len(ev_data[1:])   # calculate the length of our list, minus the header row
+print(total_range)
+print(number_of_cars)
+print(total_range / number_of_cars) # print the average range
+
+df = pd.DataFrame({'c1': [10, 11, 12], 'c2': [100, 110, 120]})
+df = df.reset_index()  # make sure indexes pair with number of rows
+
+for index, row in df.iterrows():
+    print(row['c1'], row['c2'])
+
+
+
+Creating a Function
+
+def my_function():
+  print("Hello from a function")
+
+
+def my_function():
+  print("Hello from a function")
+
+my_function()
+
+def my_function(fname):
+  print(fname + " Refsnes")
+
+my_function("Emil")
+my_function("Tobias")
+my_function("Linus")
+
+def my_function(food):
+  for x in food:
+    print(x)
+
+fruits = ["apple", "banana", "cherry"]
+
+my_function(fruits)
+
+
+def my_function(x):
+  return 5 * x
+
+print(my_function(3))
+print(my_function(5))
+print(my_function(9))
+
+
+
+
+#Statistics - measures of central 
+df['c1'].mean()
+df['c1'].median()
+df['c1'].mode()
+
+#to get the whole dataframe
+df.mean()
+df.median()
+df.mode()
+
+
+#Measures of Dispersion
+
+df['c2'].var()
+df['c2'].std()
